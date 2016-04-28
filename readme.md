@@ -1,9 +1,13 @@
 #如何使用本项目？
-1.首先确保本机装有node npm。
+
+1.项目使用gulp和compass,确保已安装node和ruby
+
+    $ gem install sass
+    $ gem install compass
 
 2.clone项目到本地。
 
-    $ git clone https://github.com/dandananddada/helloGulp.git
+    $ git clone https://github.com/hxbo/gulp-project-template.git
 
 3.进入项目根目录，安装所需插件。
 
@@ -36,9 +40,4 @@ Build静态资源文件
 
     $ gulp server
 
-#2015-06-11更新
-此次更新添加Jade-Sass-Coffee分支，如果你想使用Jade和Coffee，请使用此分支
 
-	$ git checkout Jade-Sass-Coffee
-
-运行方法同上，注意该分支下你需要修改的源文件在src目录下，而不是app目录。
