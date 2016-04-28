@@ -1,0 +1,59 @@
+@charset "UTF-8";
+@import "compass/css3","normalize";
+@import "mixin";
+
+p{
+
+    width: 100px;
+    height:100px;
+    margin: 0;
+
+}
+
+div{
+    width: 300px;
+    height:600px;
+    @include border();
+    float: left;
+    margin: 10px;
+}
+.flex-column-align-center{
+    @include flex-column-align-center();
+
+}
+
+.flex-row-align-center{
+    @include flex-row-align-center();
+
+}
+
+.flex-row{
+    @include flex-row();
+    &>p{
+        @include flex(1);//有flex,width和height 失效
+    }
+}
+
+.flex-column{
+    @include flex-column();
+    &>p{
+        width: 100%;
+        @include flex(1);//有flex,width和height 失效
+    }
+}
+
+p:nth-child(1){
+    background-color: yellow;
+}
+p:nth-child(2){
+    background-color: green;
+}
+p:nth-child(3){
+    background-color: orange;
+}
+p:nth-child(4){
+    background-color: peru;
+}
+p:nth-child(5){
+    background-color: purple;
+}

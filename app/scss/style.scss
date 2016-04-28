@@ -1,0 +1,50 @@
+/*!
+scss design by heixaobo  qq:9304600
+*/
+@charset "UTF-8";
+@import "compass", "normalize", "compass/support";
+@import "sprites", "mixin";
+
+/*
+useful commond:
+
+background:image-url('icon3.png') no-repeat;
+@include icon-sprite(icon1);                             //single sprite
+#{append_selector("p,div,span",".ddd")}{... }            //.ddd add to "p,div,span"
+
+*/
+
+$supported-browsers: chrome, safari; //chrome,firefox,safari,opera,ie
+// $browser-minimum-versions:("ie":"11","":"");
+
+//statement,function
+$orange: orange;
+$blue: #35b6ff;
+$white: #fff;
+$darkgray: #666;
+%bg-gray {
+    background: #f0f0f0
+}
+
+%position-relative {
+    position: relative;
+}
+
+
+
+/* custom style */
+body {
+    background: image_url('icon/icon1.png');
+}
+* {
+    padding: 120px;
+    margin: 0
+}
+
+.test-sprite {
+    @include icon-sprite(icon1);
+}
+
+.test-inline {
+    @include inline-block();
+}

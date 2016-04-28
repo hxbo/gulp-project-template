@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+@import "compass/css3/box","compass/css3";
+
+
+
+
+//flex layout
+@mixin flex-column{
+  @include display-box();
+  @include box-orient(vertical);
+  @include display-flex();
+  @include flex-flow(column nowrap);
+}
+
+@mixin flex-row{
+  @include display-box();
+  @include box-orient(horizontal);
+  @include display-flex();
+  @include flex-flow(row nowrap);
+}
+
+@mixin flex-column-align-center{
+  @include flex-column;
+  @include box-align(center);
+  @include box-pack(center);
+  @include justify-content(center);
+  @include align-items(center);
+}
+
+@mixin flex-row-align-center{
+  @include flex-row;
+  @include box-align(center);
+  @include box-pack(center);
+  @include justify-content(center);
+  @include align-items(center);
+}
+
+
+
+//border mixin
+@mixin border($width:1px,$style:solid,$color:#ccc){
+  border:$width $style $color;
+}
+
+@mixin border-bottom($width:1px,$style:solid,$color:#ccc){
+  border-bottom: $width $style $color;
+}
+
+@mixin border-top($width:1px,$style:solid,$color:#ccc){
+  border-top: $width $style $color;
+}
+
+@mixin border-left($width:1px,$style:solid,$color:#ccc){
+  border-left: $width $style $color;
+}
+
+@mixin border-right($width:1px,$style:solid,$color:#ccc){
+  border-right: $width $style $color;
+}
+
+// triangle mixin
+@mixin triangle-up($width:6px,$color:#333){
+  width: $width;
+  border:$width solid transparent;
+  border-bottom: $width solid $color;
+}
+@mixin triangle-bottom($width:6px,$color:#333){
+  width: $width;
+  border:$width solid transparent;
+  border-top: $width solid $color;
+}
+@mixin triangle-left($width:6px,$color:#333){
+  width: $width;
+  border:$width solid transparent;
+  border-right: $width solid $color;
+}
+@mixin triangle-right($width:6px,$color:#333){
+  width: $width;
+  border:$width solid transparent;
+  border-left: $width solid $color;
+}
+
+
+//960网格布局
+//调用  @include get_width(列数，true/false，另外需要减去的宽度);
+
+$_columns: 12 !default;      // 总列数
+$_column-width: 60px !default;   // 单列宽
+$_gutter: 20px !default;     // 间隔
+
+@mixin get_width($columns:$_columns, $onlyInnerWidth: true, $_subtract:0){
+
+  @if $onlyInnerWidth == false{
+    //如果$onlyInnerWidth为false，不减掉间隔$_gutter
+    width: ($_column-width + $_gutter) * $columns - $_subtract;
+  }@else {
+    //如果$onlyInnerWidth为true，那么减掉一个间隔$_gutter
+    width: ($_column-width + $_gutter) * $columns - $_gutter - $_subtract;
+  }
+
+}
