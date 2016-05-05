@@ -5,15 +5,23 @@
     $ gem install sass
     $ gem install compass
 
-2.clone项目到本地。
+2.全局安装gulp
+
+    $ npm install -g gulp
+
+3.在gulp项目目录中再次安装
+
+    $ npm install --save-dev gulp
+
+4.clone项目到本地。
 
     $ git clone https://github.com/hxbo/gulp-project-template.git
 
-3.进入项目根目录，安装所需插件。
+5.进入项目根目录，安装所需插件。
 
     $ npm install
 
-4.在app目录下创建你自己的静态资源文件。
+6.在app目录下创建你自己的静态资源文件。
 
 执行build命令会生成浏览器可识别的资源文件。
 
