@@ -1,5 +1,5 @@
 {
-  "name": "helloGulp",
+  "name": "gulp-project-template",
   "version": "1.0.0",
   "description": "This is my own gulp config demo",
   "main": "gulpfile.js",
