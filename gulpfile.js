@@ -16,12 +16,23 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     webserver = require('gulp-webserver'),
     jasmine = require('gulp-jasmine'),
+    usemin = require('gulp-usemin'),
+    rev = require('gulp-rev'),
     del = require('del');
 
 //html
-gulp.task('html', function() {
-    return gulp.src("app/*.html")
-        .pipe(gulp.dest('dist/'))
+gulp.task('html',['css'], function() {
+
+
+        setTimeout(function() {
+            return gulp.src("app/*.html")
+            .pipe(usemin({
+                minjs: [ uglify,rev ],
+                mincss: [ minifycss, 'concat' ,rev ]
+            }))
+            .pipe(gulp.dest('dist/'))
+        }, 5000)//延迟5秒执行文件合并，确保原始文件生成
+
         .pipe(livereload())
         .pipe(notify({ message: 'html task complete' }));
 });
@@ -38,10 +49,15 @@ gulp.task('css', function() {
         }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest('app/css'))
+
+    /*
     .pipe(concat('style.css'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
     .pipe(gulp.dest('dist/css'))
+    */
+
+
     .pipe(livereload())
     .pipe(notify({ message: 'css task complete' }));
 });
@@ -49,11 +65,13 @@ gulp.task('css', function() {
 // js
 gulp.task('js', function() {
   return gulp.src('app/js/**/*.js')
-    //.pipe(concat('main.js'))
+    /*
+    .pipe(concat('main.js'))
     .pipe(gulp.dest('dist/js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'))
+    */
     .pipe(livereload())
     .pipe(notify({ message: 'js task complete' }));
 });
@@ -107,7 +125,7 @@ gulp.task('watch', function() {
 
 //Build
 gulp.task('build', ['clean'], function() {
-    gulp.start('html','css', 'js', 'images');
+    gulp.start('js', 'images','html');
 });
 
 gulp.task('test', function () {

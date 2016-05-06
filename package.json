@@ -24,6 +24,8 @@
     "gulp-compass": "^2.1.0",
     "gulp-imageisux": "^1.0.5",
     "gulp-plumber": "^1.1.0",
+    "gulp-rev": "^7.0.0",
+    "gulp-usemin": "^0.3.23",
     "imagemin-pngquant": "^4.2.2"
   },
   "scripts": {
