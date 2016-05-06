@@ -5,14 +5,14 @@ scss design by heixaobo  qq:9304600
 @import "compass", "normalize", "compass/support";
 @import "sprites", "mixin";
 
-/*
-useful commond:
+//
+//useful commond:
 
-background:image-url('icon3.png') no-repeat;
-@include icon-sprite(icon1);                             //single sprite
-#{append_selector("p,div,span",".ddd")}{... }            //.ddd add to "p,div,span"
+//background:image-url('icon3.png') no-repeat;
+//@include icon-sprite(icon1);                             //single sprite
+//#{append_selector("p,div,span",".ddd")}{... }            //.ddd add to "p,div,span"
 
-*/
+//
 
 $supported-browsers: chrome, safari; //chrome,firefox,safari,opera,ie
 // $browser-minimum-versions:("ie":"11","":"");

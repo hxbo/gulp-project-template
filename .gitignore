@@ -53,3 +53,5 @@ Temporary Items
 node_modules
 .sass-cache
 dist
+app/css/*.*
+app/images/*.*
