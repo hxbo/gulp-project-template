@@ -3,13 +3,13 @@
 var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     compass = require('gulp-compass'),
-    //sass = require('gulp-ruby-sass'),
+    sass = require('gulp-ruby-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
-    //rename = require('gulp-rename'),
+    rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
@@ -35,7 +35,7 @@ gulp.task('html',['css'], function() {
         //.pipe(notify({ message: 'html task complete' }));
 });
 
-//拷贝其他文件夹
+//拷贝自定义文件夹
 gulp.task('copy', function() {
     return gulp.src(['app/fonts/**/*.*' , 'app/others/**/*.*'], { base: 'app' })
     .pipe(gulp.dest('dist'));  // Writes 'dist/...保持原文件夹结构'
@@ -53,27 +53,17 @@ gulp.task('css', function() {
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest('app/css'))
 
-    /*
-    .pipe(concat('style.css'))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(minifycss())
 
-    */
 
     .pipe(gulp.dest('dist/css'))
     .pipe(livereload())
     //.pipe(notify({ message: 'css task complete' }));
 });
- 
+
 // js
 gulp.task('js', function() {
   return gulp.src('app/js/**/*.js')
-    /*
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/js'))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(uglify())
-    */
+
     .pipe(gulp.dest('dist/js'))
     .pipe(livereload())
     //.pipe(notify({ message: 'js task complete' }));
@@ -98,8 +88,8 @@ gulp.task('images', function() {
 gulp.task('clean', function(cb) {
     del(['dist/','app/css/**/*.css'], cb)
 });
- 
- 
+
+
 // Watch
 gulp.task('watch', function() {
 
@@ -111,23 +101,23 @@ gulp.task('watch', function() {
 
     // Watch .css files
    // gulp.watch('app/css/**/*.css', ['css']);
- 
+
   // Watch .js files
   gulp.watch('app/js/**/*.js', ['js']);
- 
+
   // Watch image files
   gulp.watch('app/images/**/*', ['images']);
- 
+
   // Create LiveReload server
   livereload.listen();
- 
+
   // Watch any files in dist/, reload on change
   gulp.watch(['dist/**']).on('change', livereload.changed);
- 
+
 });
 
 //Build
-gulp.task('build', ['clean'], function() {
+gulp.task('build' , ['clean'], function() {
     gulp.start('js', 'images','copy','html');
 });
 
