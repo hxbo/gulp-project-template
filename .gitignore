@@ -55,4 +55,3 @@ node_modules
 dist
 app/css/*.css
 app/css/*.map
-app/images/*.*

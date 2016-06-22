@@ -3,15 +3,15 @@
 var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     compass = require('gulp-compass'),
-    sass = require('gulp-ruby-sass'),
+    //sass = require('gulp-ruby-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
-    rename = require('gulp-rename'),
+    //rename = require('gulp-rename'),
     concat = require('gulp-concat'),
-    notify = require('gulp-notify'),
+    //notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
     webserver = require('gulp-webserver'),
@@ -22,8 +22,6 @@ var gulp = require('gulp'),
 
 //html
 gulp.task('html',['css'], function() {
-
-
         setTimeout(function() {
             return gulp.src("app/*.html")
             .pipe(usemin({
@@ -31,12 +29,17 @@ gulp.task('html',['css'], function() {
                 mincss: [ minifycss, 'concat' ,rev ]
             }))
             .pipe(gulp.dest('dist/'))
-        }, 5000)//延迟5秒执行文件合并，确保原始文件生成
+        }, 8000)//延迟8秒执行文件合并，确保原始文件生成
 
         .pipe(livereload())
-        .pipe(notify({ message: 'html task complete' }));
+        //.pipe(notify({ message: 'html task complete' }));
 });
 
+//拷贝其他文件夹
+gulp.task('copy', function() {
+    return gulp.src(['app/fonts/**/*.*' , 'app/others/**/*.*'], { base: 'app' })
+    .pipe(gulp.dest('dist'));  // Writes 'dist/...保持原文件夹结构'
+});
 
 // css
 gulp.task('css', function() {
@@ -54,12 +57,12 @@ gulp.task('css', function() {
     .pipe(concat('style.css'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
-    .pipe(gulp.dest('dist/css'))
+
     */
 
-
+    .pipe(gulp.dest('dist/css'))
     .pipe(livereload())
-    .pipe(notify({ message: 'css task complete' }));
+    //.pipe(notify({ message: 'css task complete' }));
 });
  
 // js
@@ -70,10 +73,10 @@ gulp.task('js', function() {
     .pipe(gulp.dest('dist/js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(gulp.dest('dist/js'))
     */
+    .pipe(gulp.dest('dist/js'))
     .pipe(livereload())
-    .pipe(notify({ message: 'js task complete' }));
+    //.pipe(notify({ message: 'js task complete' }));
 });
 
 // Images
@@ -88,7 +91,7 @@ gulp.task('images', function() {
     })))
     .pipe(gulp.dest('dist/images'))
     .pipe(livereload())
-    .pipe(notify({ message: 'Images task complete' }));
+    //.pipe(notify({ message: 'Images task complete' }));
 });
 
 // Clean
@@ -125,7 +128,7 @@ gulp.task('watch', function() {
 
 //Build
 gulp.task('build', ['clean'], function() {
-    gulp.start('js', 'images','html');
+    gulp.start('js', 'images','copy','html');
 });
 
 gulp.task('test', function () {
