@@ -22,8 +22,6 @@ var gulp = require('gulp'),
 
 //html
 gulp.task('html',['css'], function() {
-
-
         setTimeout(function() {
             return gulp.src("app/*.html")
             .pipe(usemin({
@@ -31,7 +29,7 @@ gulp.task('html',['css'], function() {
                 mincss: [ minifycss, 'concat' ,rev ]
             }))
             .pipe(gulp.dest('dist/'))
-        }, 5000)//延迟5秒执行文件合并，确保原始文件生成
+        }, 10000)//延迟10秒执行文件合并，确保原始文件生成
 
         .pipe(livereload())
         .pipe(notify({ message: 'html task complete' }));
@@ -54,10 +52,9 @@ gulp.task('css', function() {
     .pipe(concat('style.css'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
-    .pipe(gulp.dest('dist/css'))
     */
 
-
+    .pipe(gulp.dest('dist/css'))
     .pipe(livereload())
     .pipe(notify({ message: 'css task complete' }));
 });
@@ -70,8 +67,8 @@ gulp.task('js', function() {
     .pipe(gulp.dest('dist/js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(gulp.dest('dist/js'))
     */
+    .pipe(gulp.dest('dist/js'))
     .pipe(livereload())
     .pipe(notify({ message: 'js task complete' }));
 });
@@ -79,7 +76,6 @@ gulp.task('js', function() {
 // Images
 gulp.task('images', function() {
   return gulp.src('app/images/**/*.{png,jpg,gif,ico}')
-
     .pipe(cache(imagemin({
         optimizationLevel:5,
         progressive: true ,
@@ -125,7 +121,7 @@ gulp.task('watch', function() {
 
 //Build
 gulp.task('build', ['clean'], function() {
-    gulp.start('js', 'images','html');
+    gulp.start('js', 'images' , 'html');
 });
 
 gulp.task('test', function () {

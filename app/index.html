@@ -16,4 +16,20 @@ hello,gulp!
 <script src="js/js1.js" type="text/javascript"></script>
 <script src="js/js2.js" type="text/javascript"></script>
 <!-- endbuild -->
+<script>
+	function getAge() {
+		var y = new Date().getFullYear();
+		return y - this.birth;
+	}
+
+	var xiaoming = {
+		name: '小明',
+		birth: 1990,
+		age: getAge
+	};
+
+
+	console.log(Math.max.apply(null, [3, 5, 4]))
+	console.log(Math.min.call(null, 3.4, 5, 4));
+</script>
 </html>
