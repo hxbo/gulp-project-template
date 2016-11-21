@@ -46,6 +46,7 @@ gulp.task('movecss', function () {
     //拷贝app/css到dist/css
     gulp.src('app/css/**/*.css')
         .pipe(gulp.dest('dist/css'))
+    
 });
 
 // css
