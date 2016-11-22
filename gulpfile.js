@@ -30,7 +30,6 @@ gulp.task('html',['css'], function() {
                 mincss: [ cleanCSS, 'concat' ,rev ]
             }))
             .pipe(gulp.dest('dist/'))
-
             .pipe(livereload())
     //.pipe(notify({ message: 'html task complete' }));
 });
