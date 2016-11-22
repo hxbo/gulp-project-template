@@ -44,13 +44,13 @@ gulp.task('copy', function() {
 
 gulp.task('movecss', function () {
     //拷贝app/css到dist/css
-    gulp.src('app/css/**/*.css')
+    return gulp.src('app/css/**/*.css')
         .pipe(gulp.dest('dist/css'))
-    
+
 });
 
 // css
-gulp.task('css',['movecss'], function() {
+gulp.task('css', function() {
 
     //sass编译css
     gulp.src('app/scss/*.scss')
@@ -67,7 +67,7 @@ gulp.task('css',['movecss'], function() {
 
     //.pipe(notify({ message: 'css task complete' }));
 });
-
+        .pipe(plumber())
 // js
 gulp.task('js', function() {
     return gulp.src('app/js/**/*.js')
@@ -137,11 +137,11 @@ gulp.task('test', function () {
 
 
 //Server
-gulp.task('server', function() {
+gulp.task('serve', function() {
     gulp.src('app')
         .pipe(webserver({
-            livereload: true,
-            open: true
+          livereload: true,
+          open: true
         }));
     gulp.start('watch');
 });
