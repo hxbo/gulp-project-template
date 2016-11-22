@@ -31,7 +31,7 @@ gulp.task('html',['css'], function() {
             }))
             .pipe(gulp.dest('dist/'))
 
-        .pipe(livereload())
+            .pipe(livereload())
     //.pipe(notify({ message: 'html task complete' }));
 });
 
@@ -67,11 +67,11 @@ gulp.task('css', function() {
 
     //.pipe(notify({ message: 'css task complete' }));
 });
-        .pipe(plumber())
+
 // js
 gulp.task('js', function() {
     return gulp.src('app/js/**/*.js')
-
+        .pipe(plumber())
         .pipe(gulp.dest('dist/js'))
         .pipe(livereload())
     //.pipe(notify({ message: 'js task complete' }));
@@ -127,7 +127,7 @@ gulp.task('watch', function() {
 
 //Build
 gulp.task('build' , ['clean'], function() {
-    gulp.start('js', 'images','copy','html');
+    gulp.start('js','movecss', 'images','copy','html');
 });
 
 gulp.task('test', function () {
@@ -141,6 +141,7 @@ gulp.task('serve', function() {
     gulp.src('app')
         .pipe(webserver({
           livereload: true,
+          //host:'0.0.0.0',
           open: true
         }));
     gulp.start('watch');
