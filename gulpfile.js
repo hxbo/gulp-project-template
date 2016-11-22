@@ -6,7 +6,7 @@ var gulp = require('gulp');
     sass = require('gulp-ruby-sass');
     autoprefixer = require('gulp-autoprefixer');
     uglify = require('gulp-uglify');
-    minifyHtml = require('gulp-minify-html');
+    htmlmin=require('gulp-htmlmin');
     cleanCSS = require('gulp-clean-css');
     imagemin = require('gulp-imagemin');
     pngquant = require('imagemin-pngquant');
@@ -21,14 +21,42 @@ var gulp = require('gulp');
     rev = require('gulp-rev');
     del = require('del');
 
+
+//拷贝app/css到dist/css
+gulp.task('movecss', function () {
+  return gulp.src('app/css/**/*.css')
+    .pipe(gulp.dest('dist/css'))
+
+});
+
+// css
+gulp.task('css', function() {
+
+  //sass编译css
+  gulp.src('app/scss/*.scss')
+    .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+    .pipe(compass({
+      config_file: 'config.rb',
+      css: 'app/css',
+      sass: 'app/scss'
+    }))
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(gulp.dest('app/css'))
+    .pipe(gulp.dest('dist/css'))
+    .pipe(livereload())
+
+  //.pipe(notify({ message: 'css task complete' }));
+});
+
 //html
 gulp.task('html',['css'], function() {
-
         return gulp.src("app/*.html")
+            .pipe(plumber())
             .pipe(usemin({
                 minjs: [ uglify,rev ],
                 mincss: [ cleanCSS, 'concat' ,rev ]
             }))
+            .pipe(htmlmin({collapseWhitespace: true}))
             .pipe(gulp.dest('dist/'))
             .pipe(livereload())
     //.pipe(notify({ message: 'html task complete' }));
@@ -40,32 +68,6 @@ gulp.task('copy', function() {
         .pipe(gulp.dest('dist'));  // Writes 'dist/...保持原文件夹结构'
 });
 
-
-gulp.task('movecss', function () {
-    //拷贝app/css到dist/css
-    return gulp.src('app/css/**/*.css')
-        .pipe(gulp.dest('dist/css'))
-
-});
-
-// css
-gulp.task('css', function() {
-
-    //sass编译css
-    gulp.src('app/scss/*.scss')
-        .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
-        .pipe(compass({
-            config_file: 'config.rb',
-            css: 'app/css',
-            sass: 'app/scss'
-        }))
-        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(gulp.dest('app/css'))
-        .pipe(gulp.dest('dist/css'))
-        .pipe(livereload())
-
-    //.pipe(notify({ message: 'css task complete' }));
-});
 
 // js
 gulp.task('js', function() {
