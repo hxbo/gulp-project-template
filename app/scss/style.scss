@@ -3,7 +3,7 @@ scss design by heixaobo  qq:9304600
 */
 @charset "UTF-8";
 @import "compass", "normalize", "compass/support";
-@import "sprites", "mixin";
+@import "sprites","compass/layout", "mixin";
 
 //
 //useful commond:
@@ -29,15 +29,17 @@ $darkgray: #666;
 %position-relative {
     position: relative;
 }
-
+.test{
+  background-color: yellow;
+}
 
 
 /* custom style */
 body {
-    background: image_url('error-icon2.png');
+    background: image_url('');
 }
 * {
-    padding: 120px;
+    padding: 0;
     margin: 0
 }
 
@@ -47,4 +49,8 @@ body {
 
 .test-inline {
     @include inline-block();
+}
+
+.trangle{
+  @include triangle()
 }
