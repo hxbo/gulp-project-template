@@ -20,7 +20,7 @@
   @include flex-flow(row nowrap);
 }
 
-@mixin flex-column-align-center{
+@mixin flex-column-valign-middle{
   @include flex-column;
   @include box-align(center);
   @include box-pack(center);
@@ -60,25 +60,15 @@
 }
 
 // triangle mixin
-@mixin triangle-up($width:6px,$color:#333){
-  width: $width;
+@mixin triangle($direction:down,$width:6px,$color:#333){
+  width: 0;
+  height:0;
+  overflow: hidden;
   border:$width solid transparent;
-  border-bottom: $width solid $color;
-}
-@mixin triangle-bottom($width:6px,$color:#333){
-  width: $width;
-  border:$width solid transparent;
-  border-top: $width solid $color;
-}
-@mixin triangle-left($width:6px,$color:#333){
-  width: $width;
-  border:$width solid transparent;
-  border-right: $width solid $color;
-}
-@mixin triangle-right($width:6px,$color:#333){
-  width: $width;
-  border:$width solid transparent;
-  border-left: $width solid $color;
+  @if $direction==left {border-right: $width solid $color;}
+  @if $direction==right {border-left: $width solid $color;}
+  @if $direction==up {border-bottom: $width solid $color;}
+  @if $direction==down {border-top: $width solid $color;}
 }
 
 
