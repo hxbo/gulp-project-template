@@ -2,7 +2,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Gulp Template of Hexiaobo</title>
-  <link rel="stylesheet" href="css/font-awesome.css">
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -11,7 +10,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png" href="i/favicon.png">
+  <!-- build:mincss css/font-awesome.min.css -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <!-- endbuild -->
   <!-- build:mincss css/style.min.css -->
+  <link rel="stylesheet" href="css/font-hxbicon.css">
   <link rel="stylesheet" href="css/style.css">
   <!-- endbuild -->
 
@@ -19,8 +22,46 @@
 <body>
 <div class="trangle" style="float: left;"></div>
 Hello,Gulp
+<div class="box-shadow-text" style="float: left;">
+  <a href="#" class="btn"><span class="btn-st"></span></a>
+  <i class="hxbicon-box"></i>
+  <i class="hxbicon-box fa-lg"></i>
+  <i class="hxbicon-write fa-2x"></i>
+  <i class="hxbicon-open fa-3x"></i>
+  <i class="hxbicon-inbox fa-2x"></i>
+  <i class="hxbicon-link"></i>
+  <i class="hxbicon-unlock"></i>
+  <i class="fa fa-search-plus"></i>
+  <span class="fa fa-flag"></span>
 
+  <span class="fa-stack fa-lg">
+  <i class="fa fa-square-o fa-stack-2x"></i>
+  <i class="fa fa-twitter fa-stack-1x"></i>
+</span>
+  <span class="fa-stack fa-lg">
+  <i class="fa hxbicon-box fa-stack-1x"></i>
+  <i class="fa fa-ban fa-stack-2x text-danger"></i>
+</span>
+
+</div>
+<div class="list-group">
+  <i class="fa fa-spinner fa-spin  fa-3x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
+
+  <i class="fa fa-circle-o-notch  fa-spin fa-3x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
+
+  <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
+
+  <i class="fa fa-cog fa-spin  fa-3x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
+
+  <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
+</div>
 </body>
+
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="js/jquery-2.1.4.min.js"></script>
 <!--<![endif]-->

@@ -3,7 +3,8 @@ scss design by heixaobo  qq:9304600
 */
 @charset "UTF-8";
 @import "compass", "normalize", "compass/support";
-@import "sprites","compass/layout", "mixin";
+@import "sprites","compass/css3", "mixin";
+@import "compass/layout";
 
 //
 //useful commond:
@@ -14,23 +15,126 @@ scss design by heixaobo  qq:9304600
 
 //
 
+
+
 $supported-browsers: chrome, safari; //chrome,firefox,safari,opera,ie
-// $browser-minimum-versions:("ie":"11","":"");
+//$browser-minimum-versions:("ie":"8","":"");
 
 //statement,function
-$orange: orange;
-$blue: #35b6ff;
-$white: #fff;
-$darkgray: #666;
-%bg-gray {
-    background: #f0f0f0
+//theme
+$main-color: #f65b49; //主题色
+$secondary-color: #f58634; //辅助色
+$third-color: #f94b32; //点缀色
+$fourth-color: #37ae37; //点缀色2
+$text-color: #1a1a1a; //普通文本色
+$list-main-color: #4d4d4d; //链接文字
+$list-secondary-color: #a3a3a3; //辅助文字色
+$wrap-border-color: #e2e2e2; //布局边框色
+$font-size-normal: 12px;
+$font-size-medium: 14px;
+$font-size-big: 16px;
+$font-size-lg: 18px;
+$font-family: "Microsoft Yahei", "微软雅黑", "黑体", "宋体";
+$blue: #5495c0;
+$gray: #666;
+
+
+body{
+  font-size:16px;
 }
 
-%position-relative {
-    position: relative;
+
+//
+%btn-orange{
+  background:linear-gradient(135deg,#ffbc39, #ffaa2b);
+  border-radius: 6px;
+  text-align: center;
+  color: #fff;
+  font-size:0.75rem;
+  line-height: 1.75rem;
+  @include text-shadow(2px 2px 2px rgba(0,0,0,0.1));
+  @include box-shadow(inset -2px -2px 2px rgba(255,133,17,0.83));
+  &:active{
+    background:linear-gradient(45deg, #ffbc39,#ffbc39);
+    color: #fff;
+  }
 }
-.test{
-  background-color: yellow;
+
+
+.c-white{
+  color: #fff;
+}
+.bc-white{
+  background-color: #fff;
+}
+.bc-orange{
+  background-color:$secondary-color;
+}
+.c-red{
+  color: red;
+}
+ul{
+  padding: 0;
+  margin: 0;
+}
+li{
+  list-style: none;
+}
+
+
+//layout
+.block-wrap{
+  width: 94%;
+  margin: 1.2rem auto;
+}
+.font-size-normal {
+  font-size: $font-size-normal !important;
+}
+
+.font-size-medium {
+  font-size: $font-size-medium !important;
+}
+
+.font-size-big {
+  font-size: $font-size-big !important;
+}
+
+.font-size-lg {
+  font-size: $font-size-lg !important;
+}
+
+.clearfix {
+  @include legacy-pie-clearfix;
+}
+
+h1 {
+  margin: 0;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+.ta-r{
+  text-align: right;
+}
+.ta-l{
+  text-align: left;
+}
+.f_mid {
+  margin-left: auto !important;
+  margin-right: auto !important
+}
+
+.hide {
+  display: none !important;
+}
+
+.pd-sm{
+  padding:0.2rem;
 }
 
 
@@ -51,6 +155,26 @@ body {
     @include inline-block();
 }
 
-.trangle{
-  @include triangle()
+.box-shadow-text{
+  @include box-shadow(2px 2px 2px 3px rgba(0,0,0,.25))
+}
+
+.btn-find{
+  @include replace-text("http://www.193.com/images/dss/png")
+}
+.btn{
+  display: block;
+  width: 100px;
+  height: 40px;
+  background-color:orange;
+  color: #fff;
+  position: relative;
+  margin: 50px;
+  border-radius: 10px;
+  @extend %btn-orange;
+  .btn-st{
+    @include stretch(2px,2px,2px,2px);
+    border: 1px dashed #fff;
+    border-radius: 10px;
+  }
 }
